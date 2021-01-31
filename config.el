@@ -38,6 +38,9 @@
 
 (set-popup-rule! "^\\*R:" :ignore t)
 
+(after! ess-mode
+  (define-key ess-mode-map (kbd "<C-return>") 'ess-eval-region-or-line-and-step))
+
 
 
 ;; Here are some additional functions/macros that could help you configure Doom:
