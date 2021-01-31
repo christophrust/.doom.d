@@ -6,8 +6,8 @@
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets.
-(setq user-full-name "Christoph Rust"
-      user-mail-address "christoph.g.rust@gmail.com")
+(setq user-full-name "Philipp Gersing"
+      user-mail-address "ph.gersing@gmail.com")
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
@@ -29,11 +29,12 @@
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/Dropbox/org/")
+;;(setq org-directory "~/Dropbox/org/")
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type t)
+
 (global-set-key [f8] 'neotree-toggle)
 
 (set-popup-rule! "^\\*R:" :ignore t)
@@ -41,6 +42,7 @@
 (after! ess-mode
   (define-key ess-mode-map (kbd "<C-return>") 'ess-eval-region-or-line-and-step))
 
+(add-hook ')
 
 
 ;; Here are some additional functions/macros that could help you configure Doom:
