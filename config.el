@@ -43,7 +43,6 @@
   (define-key ess-mode-map (kbd "<C-return>") 'ess-eval-region-or-line-and-step)
   (setq visual-line-mode t))
 
-(add-hook ')
 
 
 ;; Here are some additional functions/macros that could help you configure Doom:
