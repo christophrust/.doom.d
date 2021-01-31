@@ -39,7 +39,8 @@
 (set-popup-rule! "^\\*R:" :ignore t)
 
 (after! ess-mode
-  (define-key ess-mode-map (kbd "<C-return>") 'ess-eval-region-or-line-and-step))
+  (define-key ess-mode-map (kbd "<C-return>") 'ess-eval-region-or-line-and-step)
+  (setq visual-line-mode t))
 
 
 
@@ -60,4 +61,4 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
-(setq global-visual-line-mode 1)
+(setq global-visual-line-mode t)
