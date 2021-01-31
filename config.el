@@ -41,7 +41,7 @@
 
 (after! ess-mode
   (define-key ess-mode-map (kbd "<C-return>") 'ess-eval-region-or-line-and-step)
-  (setq visual-line-mode t))
+  (add-hook 'ess-mode-hook 'visual-line-mode))
 
 
 
