@@ -1,0 +1,24 @@
+#+TITLE:
+#+DATE:    April 14, 2021
+#+SINCE:   <replace with next tagged release version>
+#+STARTUP: inlineimages nofold
+
+* Table of Contents :TOC_3:noexport:
+- [[#description][Description]]
+- [[#dependencies][Dependencies]]
+  - [[#doom-emacs][Doom Emacs]]
+  - [[#other-dependencies][Other dependencies]]
+- [[#ess-bug][ESS Bug]]
+
+* Description
+
+My personal doom emacs config.
+
+* Dependencies
+
+** Doom Emacs
+** Other dependencies
+
+* ESS Bug
+
+On my machines I observe a issue with ESS. For some reason, the byte-compiled ~ess-r-mode.elc~ has strange symbols (for instance, the function ~ess-back-to-indentation~). A workaround is to recompile the file ~ess-r-mode.el~ (in a place like ~.emacs.d/.local/straight/build-.../ess/~).
