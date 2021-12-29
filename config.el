@@ -42,6 +42,8 @@
   (define-key ess-mode-map (kbd "<C-return>") 'ess-eval-region-or-line-and-step)
   (add-hook 'ess-mode-hook 'visual-line-mode))
 
+(setq c-default-style "linux"
+      c-basic-offset 4)
 
 
 ;; Here are some additional functions/macros that could help you configure Doom:
