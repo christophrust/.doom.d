@@ -64,3 +64,60 @@
 ;; they are implemented.
 
 (setq global-visual-line-mode t)
+
+
+;; mu4e configuration
+(after! mu4e
+  (set-email-account!
+   "Gmail"
+   '((mu4e-sent-folder       . "/gmail/Sent")
+     (mu4e-trash-folder      . "/gmail/Trash")
+     (mu4e-drafts-folder     . "/gmail/Drafts")
+     (smtpmail-smtp-user     . "christoph.g.rust@gmail.com"))
+   t)
+  (set-email-account!
+   "IREEN"
+   '((mu4e-sent-folder       . "/ireen/Sent")
+     (mu4e-trash-folder      . "/ireen/Trash")
+     (mu4e-drafts-folder     . "/ireen/Drafts")
+     (smtpmail-smtp-user     . "cr@ireen24.com"))
+   t)
+  (set-email-account!
+   "ai-automatica.com"
+   '((mu4e-sent-folder       . "/ai-automatica/Sent")
+     (mu4e-trash-folder      . "/ai-automatica/Trash")
+     (mu4e-drafts-folder     . "/ai-automatica/Drafts")
+     (smtpmail-smtp-user     . "christoph.rust@ai-automatica.com"))
+   t)
+  (set-email-account!
+   "ur"
+   '((mu4e-sent-folder       . "/ur/Sent Items")
+     (mu4e-trash-folder      . "/ur/Trash")
+     (mu4e-drafts-folder     . "/ur/Work In Progress")
+     (smtpmail-smtp-user     . "christoph.rust@ur.de"))
+   t)
+  (set-email-account!
+   "wu"
+   '((mu4e-sent-folder       . "/wu/Sent")
+     (mu4e-trash-folder      . "/wu/Trash")
+     (mu4e-drafts-folder     . "/wu/Drafts")
+     (smtpmail-smtp-user     . "christoph.rust@wu.ac.at"))
+   t)
+
+  (setq sendmail-program (executable-find "msmtp")
+        send-mail-function #'smtpmail-send-it
+        message-sendmail-f-is-evil t
+        message-sendmail-extra-arguments '("--read-envelope-from")
+        message-send-mail-function #'message-send-mail-with-sendmail)
+  )
+
+(setq mu4e-get-mail-command "mbsync all"
+      ;; get emails and index every 5 minutes
+      mu4e-update-interval 300
+	  ;; send emails with format=flowed
+	  mu4e-compose-format-flowed t
+	  ;; no need to run cleanup after indexing for gmail
+	  mu4e-index-cleanup nil
+	  mu4e-index-lazy-check t
+      ;; more sensible date format
+      mu4e-headers-date-format "%d.%m.%y")
