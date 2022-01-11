@@ -6,8 +6,7 @@
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets.
-(setq user-full-name "Christoph Rust"
-      user-mail-address "christoph.g.rust@gmail.com")
+(setq user-full-name "Christoph Rust")
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
@@ -73,35 +72,40 @@
    '((mu4e-sent-folder       . "/gmail/Sent")
      (mu4e-trash-folder      . "/gmail/Trash")
      (mu4e-drafts-folder     . "/gmail/Drafts")
-     (smtpmail-smtp-user     . "christoph.g.rust@gmail.com"))
+     (smtpmail-smtp-user     . "christoph.g.rust@gmail.com")
+     (user-mail-address      . "christoph.g.rust@gmail.com"))
    t)
   (set-email-account!
    "IREEN"
    '((mu4e-sent-folder       . "/ireen/Sent")
      (mu4e-trash-folder      . "/ireen/Trash")
      (mu4e-drafts-folder     . "/ireen/Drafts")
-     (smtpmail-smtp-user     . "cr@ireen24.com"))
+     (smtpmail-smtp-user     . "cr@ireen24.com")
+     (user-mail-address      . "cr@ireen24.com"))
    t)
   (set-email-account!
    "ai-automatica.com"
    '((mu4e-sent-folder       . "/ai-automatica/Sent")
      (mu4e-trash-folder      . "/ai-automatica/Trash")
      (mu4e-drafts-folder     . "/ai-automatica/Drafts")
-     (smtpmail-smtp-user     . "christoph.rust@ai-automatica.com"))
+     (smtpmail-smtp-user     . "christoph.rust@ai-automatica.com")
+     (user-mail-address      . "christoph.rust@ai-automatica.com"))
    t)
   (set-email-account!
    "ur"
    '((mu4e-sent-folder       . "/ur/Sent Items")
      (mu4e-trash-folder      . "/ur/Trash")
      (mu4e-drafts-folder     . "/ur/Work In Progress")
-     (smtpmail-smtp-user     . "christoph.rust@ur.de"))
+     (smtpmail-smtp-user     . "christoph.rust@ur.de")
+     (user-mail-address     . "christoph.rust@ur.de"))
    t)
   (set-email-account!
    "wu"
    '((mu4e-sent-folder       . "/wu/Sent")
      (mu4e-trash-folder      . "/wu/Trash")
      (mu4e-drafts-folder     . "/wu/Drafts")
-     (smtpmail-smtp-user     . "christoph.rust@wu.ac.at"))
+     (smtpmail-smtp-user     . "christoph.rust@wu.ac.at")
+     (user-mail-address     . "christoph.rust@wu.ac.at"))
    t)
 
   (setq sendmail-program (executable-find "msmtp")
@@ -112,8 +116,8 @@
   )
 
 (setq mu4e-get-mail-command "mbsync all"
-      ;; get emails and index every 5 minutes
-      mu4e-update-interval 300
+      ;; get emails and index every 30 minutes
+      mu4e-update-interval 1800
 	  ;; send emails with format=flowed
 	  mu4e-compose-format-flowed t
 	  ;; no need to run cleanup after indexing for gmail
