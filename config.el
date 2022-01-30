@@ -34,16 +34,28 @@
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type t)
 (global-set-key [f8] 'neotree-toggle)
+(global-set-key [f5] '+fold/toggle)
 
 (set-popup-rule! "^\\*R:" :ignore t)
 
 (after! ess-mode
   (define-key ess-mode-map (kbd "<C-return>") 'ess-eval-region-or-line-and-step)
-  (add-hook 'ess-mode-hook 'visual-line-mode))
+  (add-hook 'ess-mode-hook 'visual-line-mode)
+  (defun ess-r-devtools-document-rust-package (&optional arg)
+    "Interface for `rextendr::document()'.
+With prefix ARG ask for extra arguments."
+    (interactive "P")
+  (ess-r-package-eval-linewise
+   "rextendr::document(%s)\n" "Documenting %s" arg
+   '("" (read-string "Arguments: "))))
+  (map! "C-c C-w C-r" #'ess-r-devtools-document-rust-package)
+  )
 
 (setq c-default-style "linux"
       c-basic-offset 4)
 
+;; Rust settings
+(setq rustic-analyzer-command '("~/.cargo/bin/rust-analyzer"))
 
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
@@ -73,7 +85,8 @@
      (mu4e-trash-folder      . "/gmail/Trash")
      (mu4e-drafts-folder     . "/gmail/Drafts")
      (smtpmail-smtp-user     . "christoph.g.rust@gmail.com")
-     (user-mail-address      . "christoph.g.rust@gmail.com"))
+     (user-mail-address      . "christoph.g.rust@gmail.com")
+     (mu4e-index-cleanup     . nil))
    t)
   (set-email-account!
    "IREEN"
@@ -81,7 +94,8 @@
      (mu4e-trash-folder      . "/ireen/Trash")
      (mu4e-drafts-folder     . "/ireen/Drafts")
      (smtpmail-smtp-user     . "cr@ireen24.com")
-     (user-mail-address      . "cr@ireen24.com"))
+     (user-mail-address      . "cr@ireen24.com")
+     (mu4e-index-cleanup     . nil))
    t)
   (set-email-account!
    "ai-automatica.com"
@@ -89,7 +103,8 @@
      (mu4e-trash-folder      . "/ai-automatica/Trash")
      (mu4e-drafts-folder     . "/ai-automatica/Drafts")
      (smtpmail-smtp-user     . "christoph.rust@ai-automatica.com")
-     (user-mail-address      . "christoph.rust@ai-automatica.com"))
+     (user-mail-address      . "christoph.rust@ai-automatica.com")
+     (mu4e-index-cleanup     . t))
    t)
   (set-email-account!
    "ur"
@@ -97,7 +112,8 @@
      (mu4e-trash-folder      . "/ur/Trash")
      (mu4e-drafts-folder     . "/ur/Work In Progress")
      (smtpmail-smtp-user     . "christoph.rust@ur.de")
-     (user-mail-address     . "christoph.rust@ur.de"))
+     (user-mail-address      . "christoph.rust@ur.de")
+     (mu4e-index-cleanup     . t))
    t)
   (set-email-account!
    "wu"
@@ -105,7 +121,8 @@
      (mu4e-trash-folder      . "/wu/Trash")
      (mu4e-drafts-folder     . "/wu/Drafts")
      (smtpmail-smtp-user     . "christoph.rust@wu.ac.at")
-     (user-mail-address     . "christoph.rust@wu.ac.at"))
+     (user-mail-address      . "christoph.rust@wu.ac.at")
+     (mu4e-index-cleanup     . t))
    t)
 
   (setq sendmail-program (executable-find "msmtp")
@@ -117,11 +134,8 @@
 
 (setq mu4e-get-mail-command "mbsync all"
       ;; get emails and index every 30 minutes
-      mu4e-update-interval 1800
-	  ;; send emails with format=flowed
-	  mu4e-compose-format-flowed t
-	  ;; no need to run cleanup after indexing for gmail
-	  mu4e-index-cleanup nil
-	  mu4e-index-lazy-check t
+      ;; mu4e-update-interval nil
+      ;; send emails with format=flowed
+      mu4e-compose-format-flowed t
       ;; more sensible date format
       mu4e-headers-date-format "%d.%m.%y")
