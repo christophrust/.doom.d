@@ -80,7 +80,7 @@ With prefix ARG ask for extra arguments."
 ;; mu4e configuration
 (after! mu4e
   (set-email-account!
-   "Gmail"
+   "gmail"
    '((mu4e-sent-folder       . "/gmail/Sent")
      (mu4e-trash-folder      . "/gmail/Trash")
      (mu4e-drafts-folder     . "/gmail/Drafts")
@@ -89,7 +89,7 @@ With prefix ARG ask for extra arguments."
      (mu4e-index-cleanup     . nil))
    t)
   (set-email-account!
-   "IREEN"
+   "ireen"
    '((mu4e-sent-folder       . "/ireen/Sent")
      (mu4e-trash-folder      . "/ireen/Trash")
      (mu4e-drafts-folder     . "/ireen/Drafts")
@@ -98,7 +98,7 @@ With prefix ARG ask for extra arguments."
      (mu4e-index-cleanup     . nil))
    t)
   (set-email-account!
-   "ai-automatica.com"
+   "ai-automatica"
    '((mu4e-sent-folder       . "/ai-automatica/Sent")
      (mu4e-trash-folder      . "/ai-automatica/Trash")
      (mu4e-drafts-folder     . "/ai-automatica/Drafts")
@@ -106,6 +106,15 @@ With prefix ARG ask for extra arguments."
      (user-mail-address      . "christoph.rust@ai-automatica.com")
      (mu4e-index-cleanup     . t))
    t)
+  ;; (set-email-account!
+  ;;  "ai-automatica.com2"
+  ;;  '((mu4e-sent-folder       . "/ai-automatica/Sent")
+  ;;    (mu4e-trash-folder      . "/ai-automatica/Trash")
+  ;;    (mu4e-drafts-folder     . "/ai-automatica/Drafts")
+  ;;    (smtpmail-smtp-user     . "christoph.rust@ai-automatica.com")
+  ;;    (user-mail-address      . "rust@ai-automatica.com")
+  ;;    (mu4e-index-cleanup     . t))
+  ;;  t)
   (set-email-account!
    "ur"
    '((mu4e-sent-folder       . "/ur/Sent Items")
@@ -130,12 +139,19 @@ With prefix ARG ask for extra arguments."
         message-sendmail-f-is-evil t
         message-sendmail-extra-arguments '("--read-envelope-from")
         message-send-mail-function #'message-send-mail-with-sendmail)
+
+  (setq mu4e-get-mail-command "mbsync all"
+        ;; get emails and index every 30 minutes
+        ;; mu4e-update-interval nil
+        ;; send emails with format=flowed
+        mu4e-compose-format-flowed t
+        ;; more sensible date format
+        mu4e-headers-date-format "%d.%m.%y")
   )
 
-(setq mu4e-get-mail-command "mbsync all"
-      ;; get emails and index every 30 minutes
-      ;; mu4e-update-interval nil
-      ;; send emails with format=flowed
-      mu4e-compose-format-flowed t
-      ;; more sensible date format
-      mu4e-headers-date-format "%d.%m.%y")
+;; active Babel languages
+(org-babel-do-load-languages
+   'org-babel-load-languages
+    '((R . t)
+         (emacs-lisp . nil)))
+
